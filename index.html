@@ -508,50 +508,49 @@
     ============================================================ */
     .wa-float {
       position: fixed;
-      /* iOS safe-area: moves button above home indicator */
       bottom: calc(20px + env(safe-area-inset-bottom, 0px));
       right: 20px;
-      z-index: 200;
-      width: 56px; height: 56px; border-radius: 50%;
+      z-index: 1000;
+      width: 60px; height: 60px; border-radius: 50%;
       background: var(--wa-green);
-      /* 3D illusion: stacked shadows + top-light inset */
       box-shadow:
-        0  4px  8px rgba(37, 211, 102, 0.40),
-        0  8px 16px rgba(0, 0, 0, 0.30),
-        0 16px 32px rgba(0, 0, 0, 0.15),
-        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+        0  4px 12px rgba(37, 211, 102, 0.40),
+        0  8px 24px rgba(0, 0, 0, 0.20);
       display: flex; align-items: center; justify-content: center;
+      color: #fff; text-decoration: none;
       animation: waBreathe 3s ease-in-out infinite;
-      transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.4), box-shadow 0.4s ease;
-      text-decoration: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     .wa-float svg { width: 28px; height: 28px; color: #fff; }
-    /* Desktop: full spin + scale on hover */
+    /* Desktop hover: stop breathe, spin + scale */
     @media (hover: hover) {
       .wa-float:hover {
         animation: none;
-        transform: rotate(360deg) scale(1.15);
+        transform: scale(1.15) rotate(360deg);
+        transition-duration: 0.6s;
         box-shadow:
           0  8px 24px rgba(37, 211, 102, 0.60),
-          0 16px 32px rgba(0, 0, 0, 0.40),
-          inset 0 1px 0 rgba(255, 255, 255, 0.30);
+          0 16px 32px rgba(0, 0, 0, 0.40);
       }
     }
-    /* Mobile: shake every 5s to attract attention */
-    @media (hover: none) { .wa-float { animation: waShake 5s ease-in-out infinite; } }
+    /* Mobile: breathe + shake running together (Safari-safe: separate keyframes, no compound transform) */
+    @media (hover: none) {
+      .wa-float {
+        animation: waBreathe 3s ease-in-out infinite, waShake 5s ease-in-out infinite;
+      }
+    }
     @keyframes waBreathe {
       0%, 100% { transform: scale(1.00); }
       50%       { transform: scale(1.08); }
     }
     @keyframes waShake {
-      0%,  88%, 100% { transform: scale(1.04) rotate(  0deg); }
-      90%             { transform: scale(1.04) rotate( -8deg); }
-      92%             { transform: scale(1.04) rotate(  8deg); }
-      94%             { transform: scale(1.04) rotate( -5deg); }
-      96%             { transform: scale(1.04) rotate(  3deg); }
+      0%,  90%, 100% { transform: scale(1.04) rotate(  0deg); }
+      92%             { transform: scale(1.04) rotate( -3deg); }
+      94%             { transform: scale(1.04) rotate(  3deg); }
+      96%             { transform: scale(1.04) rotate( -3deg); }
       98%             { transform: scale(1.04) rotate(  0deg); }
     }
-    /* prefers-reduced-motion: no animation, still fully visible & clickable */
+    /* prefers-reduced-motion: fully visible & clickable, no animation */
     @media (prefers-reduced-motion: reduce) { .wa-float { animation: none; } }
 
     /* ============ FOOTER ============ */
