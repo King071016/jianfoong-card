@@ -1,0 +1,1261 @@
+<!--
+  JianFoong — Swim Coach Digital Business Card
+  =============================================
+  ⚠️  NAME: "JianFoong" — capital F preserved exactly. Do NOT change to "Jianfoong".
+
+  REPLACEABLE PLACEHOLDERS:
+  1. Avatar:          https://placehold.co/200x200/003B5C/7DD3FC?text=JF
+                      → replace with real photo URL when available
+  2. Email:           kongfoong4@gmail.com → real email (5 occurrences)
+  3. Certifications:  Australia Swimming License (Australia-certified)
+                      (appears on 3D medallion back, card back, commitments section)
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>JianFoong · Swim Coach · Miri</title>
+  <meta name="description" content="JianFoong — Certified Swim Coach in Miri, Sarawak. Kids, Adults &amp; Seniors. Book a class today." />
+  <meta property="og:title" content="JianFoong · Swim Coach · Miri" />
+  <meta property="og:description" content="JianFoong — Certified Swim Coach in Miri, Sarawak." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============ RESET ============ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #001a2e;
+      color: #e8f4fd;
+      overflow-x: hidden;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    /* ============ DESIGN TOKENS ============ */
+    :root {
+      --deep:        #003B5C;
+      --deep-dark:   #00263d;
+      --deep-bg:     #001a2e;
+      --blue:        #7DD3FC;
+      --blue-soft:   #5bbce8;
+      --orange:      #FB923C;
+      --orange-soft: #e07828;
+      --wa-green:    #25D366;
+      --text:        #e8f4fd;
+      --text-dim:    #8ab5ce;
+      --glass-bg:    rgba(0, 59, 92, 0.35);
+      --glass-border:rgba(125, 211, 252, 0.15);
+      --shadow-lg:   0 25px 60px -10px rgba(0, 0, 0, 0.7);
+      --sans:        'Montserrat', 'Inter', sans-serif;
+    }
+
+    /* ============ WATER RIPPLE BACKGROUND (CSS-only) ============ */
+    .ripple-bg {
+      position: fixed; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse at 35% 25%, rgba(0, 59, 92, 0.55) 0%, transparent 55%),
+        radial-gradient(ellipse at 75% 80%, rgba(0, 38, 61, 0.40) 0%, transparent 50%),
+        #001a2e;
+      overflow: hidden;
+    }
+    .ripple-ring {
+      position: absolute; top: 50%; left: 50%;
+      width: 130vmax; height: 130vmax;
+      border-radius: 50%;
+      border: 1.5px solid rgba(125, 211, 252, 0.1);
+      transform: translate(-50%, -50%) scale(0);
+      animation: rippleExpand 5s ease-out infinite;
+      pointer-events: none;
+    }
+    .ripple-ring:nth-child(2) { animation-delay: 1.25s; border-color: rgba(125, 211, 252, 0.07); }
+    .ripple-ring:nth-child(3) { animation-delay: 2.50s; border-color: rgba(125, 211, 252, 0.05); }
+    .ripple-ring:nth-child(4) { animation-delay: 3.75s; border-color: rgba(125, 211, 252, 0.04); }
+    @keyframes rippleExpand {
+      0%   { transform: translate(-50%, -50%) scale(0); opacity: 0.9; }
+      70%  { opacity: 0.25; }
+      100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .ripple-ring { animation: none; opacity: 0; }
+    }
+
+    /* ============ LAYOUT ============ */
+    .container {
+      position: relative; z-index: 1;
+      max-width: 1180px; margin: 0 auto;
+      padding: clamp(1rem, 4vw, 3rem) clamp(1rem, 4vw, 2rem);
+    }
+
+    /* ============ LANGUAGE TOGGLE ============ */
+    .lang-toggle {
+      position: fixed; top: 1rem; right: 1rem; z-index: 100;
+      display: flex; gap: 4px; padding: 4px;
+      background: rgba(0, 30, 50, 0.6);
+      border: 1px solid var(--glass-border);
+      border-radius: 999px;
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    }
+    .lang-btn {
+      padding: 6px 12px; font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.04em; color: var(--text-dim);
+      border-radius: 999px; transition: all 0.3s ease;
+    }
+    .lang-btn:hover { color: var(--text); }
+    .lang-btn.active {
+      background: linear-gradient(135deg, var(--blue), var(--blue-soft));
+      color: #001a2e; font-weight: 700;
+      box-shadow: 0 0 15px rgba(125, 211, 252, 0.4);
+    }
+
+    /* ============ PAGE FADE ============ */
+    .page-fade { transition: opacity 0.35s ease; }
+    .page-fade.fading { opacity: 0; }
+
+    /* ============ HERO ============ */
+    .hero { text-align: center; padding-top: clamp(2.5rem, 6vw, 4rem); margin-bottom: 2rem; }
+    .hero-eyebrow {
+      display: inline-block;
+      font-family: var(--sans); font-size: 0.68rem; font-weight: 600;
+      letter-spacing: 0.42em; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 0.6rem;
+    }
+    .hero-eyebrow::before, .hero-eyebrow::after {
+      content: ''; display: inline-block; width: 22px; height: 1px;
+      background: var(--blue); vertical-align: middle; margin: 0 12px; opacity: 0.55;
+    }
+
+    /* ============ CARD 3D FLIP + PARALLAX ============ */
+    .card-section {
+      display: flex; justify-content: center;
+      perspective: 1500px; padding: 1rem 0 2rem;
+    }
+    .card-perspective {
+      width: min(420px, 92vw); height: 260px;
+      position: relative; transform-style: preserve-3d;
+      transition: transform 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.4);
+      will-change: transform;
+    }
+    @media (min-width: 700px) { .card-perspective { width: 460px; height: 280px; } }
+    .card-3d {
+      position: relative; width: 100%; height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.9s cubic-bezier(0.6, 0.05, 0.3, 1);
+    }
+    /* Desktop hover — restricted to real hover devices (fixes mobile sticky-hover) */
+    @media (hover: hover) {
+      .card-perspective:hover .card-3d { transform: rotateY(180deg); }
+    }
+    /* Mobile JS toggle */
+    .card-perspective.flipped .card-3d { transform: rotateY(180deg); }
+
+    .card-face {
+      position: absolute; inset: 0;
+      backface-visibility: hidden; -webkit-backface-visibility: hidden;
+      border-radius: 18px; padding: 1.5rem 1.6rem;
+      background: linear-gradient(135deg, rgba(0, 59, 92, 0.82), rgba(0, 26, 46, 0.96));
+      border: 1px solid rgba(125, 211, 252, 0.25);
+      box-shadow: var(--shadow-lg), 0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+      overflow: hidden;
+    }
+    .card-face::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(circle at 5%  5%,  rgba(125, 211, 252, 0.10), transparent 45%),
+        radial-gradient(circle at 95% 95%, rgba(251, 146,  60, 0.06), transparent 50%);
+      pointer-events: none;
+    }
+    .card-front { z-index: 2; }
+    .card-back  { transform: rotateY(180deg); }
+
+    .card-corner {
+      position: absolute; top: 14px; right: 16px;
+      font-family: var(--sans); font-size: 0.68rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--blue); opacity: 0.85;
+    }
+    .card-front-grid {
+      display: grid; grid-template-columns: 78px 1fr;
+      gap: 1rem; align-items: center; height: 100%;
+    }
+    .avatar {
+      width: 78px; height: 78px; border-radius: 50%;
+      border: 2px solid var(--blue);
+      box-shadow: 0 0 20px rgba(125, 211, 252, 0.3);
+      overflow: hidden; flex-shrink: 0;
+    }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .name {
+      font-family: var(--sans); font-size: clamp(1.55rem, 5vw, 1.95rem);
+      font-weight: 700; letter-spacing: 0.01em; color: var(--text); line-height: 1.1;
+    }
+    .title {
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--blue); margin-top: 6px;
+    }
+    .company { font-size: 0.62rem; font-weight: 600; color: #FB923C; margin-top: 4px; letter-spacing: 0.03em; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+    .tag {
+      font-size: 0.63rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 999px;
+      background: rgba(125, 211, 252, 0.10); border: 1px solid rgba(125, 211, 252, 0.28); color: var(--blue);
+    }
+    .tag.orange {
+      background: rgba(251, 146, 60, 0.10); border-color: rgba(251, 146, 60, 0.30); color: var(--orange);
+    }
+    .card-footer-mark {
+      position: absolute; bottom: 14px; left: 16px;
+      font-size: 0.6rem; letter-spacing: 0.28em; color: var(--text-dim); text-transform: uppercase;
+    }
+
+    /* card back */
+    .card-back .back-grid {
+      display: grid; grid-template-columns: 1fr 140px; gap: 1rem; height: 100%;
+    }
+    .back-info {
+      display: flex; flex-direction: column; gap: 6px;
+      font-size: 0.74rem; color: var(--text-dim); overflow: hidden;
+    }
+    .back-info .row { display: flex; gap: 8px; align-items: flex-start; }
+    .back-info .row svg { width: 13px; height: 13px; color: var(--blue); flex-shrink: 0; margin-top: 2px; }
+    .back-info a { color: var(--text-dim); transition: color 0.2s ease; }
+    .back-info a:hover { color: var(--blue); }
+    .back-name { font-family: var(--sans); font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+    .back-cert { font-size: 0.66rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue); margin-bottom: 4px; }
+    .back-save-wrap { margin-top: auto; padding-top: 4px; }
+
+    /* QR — GPU hint prevents iOS Safari blur on flip */
+    .qr-wrap {
+      width: 140px; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 6px;
+      transform: translateZ(0);
+      backface-visibility: hidden; -webkit-backface-visibility: hidden;
+    }
+    #qrcode {
+      background: #ffffff; border-radius: 7px; padding: 6px; border: 3px solid var(--blue);
+      transform: translateZ(0);
+      backface-visibility: hidden; -webkit-backface-visibility: hidden;
+    }
+    #qrcode canvas, #qrcode img { display: block; width: 100px !important; height: 100px !important; }
+    .qr-label { font-size: 0.57rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); text-align: center; }
+
+    /* ============ ACTION BUTTONS ============ */
+    .actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; margin-bottom: 3rem; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      padding: 0.65rem 1.2rem; border-radius: 999px; min-height: 44px;
+      font-size: 0.82rem; font-weight: 500; letter-spacing: 0.03em;
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      transition: all 0.25s ease; cursor: pointer; color: var(--text);
+    }
+    .btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+    .btn:hover { border-color: rgba(125, 211, 252, 0.35); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+    .btn:active { transform: scale(0.97); }
+    .btn.primary {
+      background: linear-gradient(135deg, var(--orange), var(--orange-soft));
+      border-color: transparent; color: #fff; font-weight: 600;
+      box-shadow: 0 4px 20px rgba(251, 146, 60, 0.28);
+    }
+    .btn.primary:hover { box-shadow: 0 6px 28px rgba(251, 146, 60, 0.45); transform: translateY(-1px); }
+    .btn.whatsapp {
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      border-color: transparent; color: #fff; font-weight: 600;
+    }
+    .btn.whatsapp:hover { box-shadow: 0 6px 24px rgba(34, 197, 94, 0.35); transform: translateY(-1px); }
+
+    /* ============ SECTION HEAD ============ */
+    .section-head { text-align: center; margin-bottom: 1.6rem; }
+    .section-head h2 {
+      font-family: var(--sans); font-size: clamp(1.45rem, 4vw, 1.95rem);
+      font-weight: 700; color: var(--text); letter-spacing: -0.01em;
+    }
+    .section-head h2 em { font-style: normal; color: var(--blue); }
+    .section-head p { font-size: 0.88rem; color: var(--text-dim); margin-top: 0.4rem; }
+    .pkg-note {
+      display: inline-block; margin-top: 0.6rem;
+      font-size: 0.78rem; font-weight: 600; color: var(--blue);
+      background: rgba(125, 211, 252, 0.08); border: 1px solid rgba(125, 211, 252, 0.20);
+      border-radius: 999px; padding: 5px 16px; letter-spacing: 0.02em;
+    }
+
+    /* ============ COMMITMENTS ============ */
+    .commitments {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem; margin-bottom: 3rem;
+    }
+    .commitment {
+      position: relative; padding: 1.6rem 1.4rem;
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      border-radius: 16px; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      text-align: center; transition: transform 0.3s ease, border-color 0.3s ease; cursor: pointer;
+    }
+    @media (hover: hover) {
+      .commitment:hover { transform: translateY(-4px); border-color: rgba(125, 211, 252, 0.35); }
+      .commitment:hover .tooltip { opacity: 1; pointer-events: auto; }
+      .commitment:hover .commitment-icon { box-shadow: 0 0 25px rgba(125, 211, 252, 0.4); }
+    }
+    .commitment.active { transform: translateY(-4px); border-color: rgba(125, 211, 252, 0.35); }
+    .commitment.active .tooltip { opacity: 1; pointer-events: auto; }
+    .commitment.active .commitment-icon { box-shadow: 0 0 25px rgba(125, 211, 252, 0.4); }
+    .commitment-icon {
+      width: 48px; height: 48px; margin: 0 auto 1rem;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(125, 211, 252, 0.10); border-radius: 12px; color: var(--blue);
+      transition: box-shadow 0.3s ease;
+    }
+    .commitment-icon svg { width: 24px; height: 24px; }
+    .commitment h3 { font-family: var(--sans); font-size: 0.95rem; font-weight: 600; color: var(--text); margin-bottom: 0.4rem; }
+    .commitment p { font-size: 0.8rem; color: var(--text-dim); line-height: 1.5; }
+    .tooltip {
+      position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%);
+      background: rgba(0, 15, 28, 0.95); border: 1px solid var(--glass-border);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-radius: 8px; padding: 0.6rem 0.9rem;
+      font-size: 0.78rem; color: var(--text); max-width: 230px; white-space: normal;
+      text-align: center; line-height: 1.5; opacity: 0; pointer-events: none;
+      transition: opacity 0.2s ease; z-index: 10;
+    }
+    .tooltip::after {
+      content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+      border: 6px solid transparent; border-top-color: rgba(0, 15, 28, 0.95);
+    }
+
+    /* ============ 3D-1: ROTATING CREDENTIAL MEDALLION ============
+       iOS Safari fix: translateZ(0) on every 3D layer forces GPU compositing.
+       backface-visibility: hidden prevents back-face bleed.
+       will-change: transform hints browser to promote to own layer.
+    ============================================================ */
+    .medallion-wrap {
+      width: 80px; height: 80px; margin: 0 auto 1rem;
+      perspective: 300px; cursor: pointer;
+    }
+    .medallion {
+      width: 100%; height: 100%;
+      transform-style: preserve-3d;
+      transform: translateZ(0);       /* ← GPU layer, iOS Safari fix */
+      will-change: transform;
+      animation: medalSpin 7s linear infinite;
+      position: relative;
+    }
+    .medallion-face {
+      position: absolute; inset: 0; border-radius: 50%;
+      backface-visibility: hidden; -webkit-backface-visibility: hidden;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 4px;
+    }
+    .medallion-front {
+      background: radial-gradient(circle at 35% 35%, #7DD3FC, #003B5C);
+      border: 2px solid rgba(125, 211, 252, 0.6);
+      box-shadow: 0 0 20px rgba(125, 211, 252, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+    .medallion-front svg { width: 28px; height: 28px; }
+    .medallion-back {
+      transform: rotateY(180deg);
+      background: radial-gradient(circle at 65% 35%, #003B5C, #001a2e);
+      border: 2px solid rgba(251, 146, 60, 0.5);
+      box-shadow: 0 0 20px rgba(251, 146, 60, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      color: var(--orange);
+      font-size: 0.58rem; font-weight: 600; letter-spacing: 0.06em;
+      text-align: center; padding: 8px; text-transform: uppercase; line-height: 1.4;
+    }
+    @keyframes medalSpin {
+      from { transform: translateZ(0) rotateY(0deg); }
+      to   { transform: translateZ(0) rotateY(360deg); }
+    }
+    /* JS-controlled states */
+    .medallion.show-back {
+      animation: none;
+      transform: translateZ(0) rotateY(180deg);
+      transition: transform 0.6s ease;
+    }
+    /* prefers-reduced-motion: stop auto-spin entirely */
+    @media (prefers-reduced-motion: reduce) {
+      .medallion { animation: none; transform: translateZ(0) rotateY(0deg); }
+    }
+    .medallion-label {
+      font-size: 0.6rem; font-weight: 500; letter-spacing: 0.08em;
+      color: var(--text-dim); text-transform: uppercase; margin-top: -0.3rem;
+    }
+
+    /* ============ 3D-2: PRICING RAIL (levitating cards) ============ */
+    .pricing-rail {
+      display: flex; gap: 1rem; overflow-x: auto;
+      padding: 0.5rem 0.2rem 1.5rem;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: thin; scrollbar-color: var(--blue) transparent;
+      margin-bottom: 3rem;
+    }
+    .pricing-rail::-webkit-scrollbar { height: 6px; }
+    .pricing-rail::-webkit-scrollbar-thumb { background: var(--blue-soft); border-radius: 3px; }
+    .pricing-rail::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
+
+    .pkg-card {
+      flex: 0 0 188px; scroll-snap-align: start;
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      border-radius: 14px; overflow: hidden; position: relative; cursor: pointer;
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      /* 3D depth illusion: layered box-shadow */
+      box-shadow:
+        0 2px 4px  rgba(0, 0, 0, 0.30),
+        0 4px 8px  rgba(0, 0, 0, 0.20),
+        0 1px 0    rgba(125, 211, 252, 0.08) inset;
+      /* Start hidden for IntersectionObserver float-in */
+      opacity: 0;
+      transform: translateY(20px);
+      /* Only transition for float-in; hover override below */
+      transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.2), box-shadow 0.35s ease;
+    }
+    /* float-in state — added by IntersectionObserver JS */
+    .pkg-card.float-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Desktop hover: lift + Y-axis tilt + deeper shadow (CSS transform only, no top/left) */
+    @media (hover: hover) {
+      .pkg-card.float-in:hover {
+        transform: translateY(-8px) rotateY(5deg);
+        box-shadow:
+          6px 18px 40px rgba(0, 0, 0, 0.50),
+          3px  6px 12px rgba(125, 211, 252, 0.20),
+          0    0   0 1px rgba(125, 211, 252, 0.30);
+      }
+      .pkg-card.float-in:hover .pkg-tooltip { opacity: 1; pointer-events: auto; }
+    }
+    /* Mobile press feel — translateY not top */
+    .pkg-card.float-in:active { transform: translateY(2px) scale(0.98); box-shadow: 0 1px 4px rgba(0,0,0,0.4); }
+    /* Mobile tap-active tooltip */
+    .pkg-card.active .pkg-tooltip { opacity: 1; pointer-events: auto; }
+    .pkg-card.active.float-in {
+      transform: scale(1.04) translateY(-5px);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(125, 211, 252, 0.3);
+    }
+
+    .group-badge-bar {
+      background: var(--orange); color: #fff;
+      font-family: var(--sans); font-size: 0.6rem; font-weight: 800;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      padding: 5px 0; text-align: center;
+    }
+    .group-badge-bar .same-note { font-size: 0.55rem; font-weight: 600; letter-spacing: 0.08em; text-transform: none; opacity: 0.9; margin-left: 6px; }
+    .pkg-body { padding: 1rem 1rem 1.1rem; }
+    .pkg-type { font-family: var(--sans); font-size: 0.88rem; font-weight: 700; color: var(--text); letter-spacing: 0.03em; margin-bottom: 0.65rem; }
+    .pkg-persons { display: flex; flex-wrap: wrap; gap: 3px; margin-bottom: 0.85rem; min-height: 20px; align-items: center; }
+    .pkg-persons svg { width: 16px; height: 16px; color: var(--blue); opacity: 0.8; }
+    .pkg-price { font-family: var(--sans); font-size: 1.75rem; font-weight: 800; color: var(--orange); line-height: 1; margin-bottom: 3px; }
+    .pkg-per { font-size: 0.68rem; font-weight: 500; color: var(--text-dim); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.75rem; }
+    .pkg-divider { height: 1px; background: var(--glass-border); margin-bottom: 0.75rem; }
+    .pkg-duration { font-size: 0.72rem; color: var(--text-dim); line-height: 1.5; }
+    .pkg-tooltip {
+      position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%);
+      background: rgba(0, 15, 28, 0.95); border: 1px solid var(--glass-border);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-radius: 8px; padding: 0.55rem 0.85rem;
+      font-size: 0.75rem; color: var(--text); max-width: 195px; white-space: normal;
+      text-align: center; line-height: 1.5; opacity: 0; pointer-events: none;
+      transition: opacity 0.2s ease; z-index: 10;
+    }
+    .pkg-tooltip::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 6px solid transparent; border-top-color: rgba(0, 15, 28, 0.95); }
+
+    /* ============ LOCATIONS ============ */
+    .locations {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem; margin-bottom: 3rem;
+    }
+    .location-card {
+      padding: 1.6rem 1.5rem; background: var(--glass-bg); border: 1px solid var(--glass-border);
+      border-radius: 16px; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .location-card:hover { transform: translateY(-4px); border-color: rgba(125, 211, 252, 0.35); }
+    .location-name { font-family: var(--sans); font-size: 1.05rem; font-weight: 700; color: var(--blue); margin-bottom: 0.85rem; display: flex; align-items: center; gap: 0.5rem; }
+    .location-name svg { width: 18px; height: 18px; flex-shrink: 0; }
+    .location-flexible-note { font-size: 0.84rem; color: var(--text-dim); line-height: 1.7; margin-bottom: 0.5rem; }
+    .location-example { font-size: 0.76rem; color: var(--text-dim); font-style: italic; margin-bottom: 1rem; opacity: 0.8; }
+    .location-actions { margin-top: 1rem; }
+    .location-actions .btn { padding: 0.55rem 1rem; font-size: 0.8rem; }
+
+    /* ============ SHARE ============ */
+    .share-section { text-align: center; padding: 2rem 0 4rem; }
+    .share-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.7rem; margin-top: 1.2rem; }
+
+    /* ============ TOAST ============ */
+    .toast {
+      position: fixed; bottom: 2rem; left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: rgba(0, 15, 28, 0.92); border: 1px solid var(--glass-border);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      color: var(--text); padding: 0.7rem 1.4rem; border-radius: 999px;
+      font-size: 0.82rem; z-index: 300; opacity: 0;
+      transition: all 0.3s ease; pointer-events: none; white-space: nowrap;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* ============ 3D-3: FLOATING WHATSAPP BUTTON ============
+       env(safe-area-inset-bottom) avoids iPhone home indicator.
+       Full CSS — zero JS required.
+       Degradation: no 3D shadow → still a clickable green circle.
+    ============================================================ */
+    .wa-float {
+      position: fixed;
+      /* iOS safe-area: moves button above home indicator */
+      bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+      right: 20px;
+      z-index: 200;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--wa-green);
+      /* 3D illusion: stacked shadows + top-light inset */
+      box-shadow:
+        0  4px  8px rgba(37, 211, 102, 0.40),
+        0  8px 16px rgba(0, 0, 0, 0.30),
+        0 16px 32px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      display: flex; align-items: center; justify-content: center;
+      animation: waBreathe 3s ease-in-out infinite;
+      transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.4), box-shadow 0.4s ease;
+      text-decoration: none;
+    }
+    .wa-float svg { width: 28px; height: 28px; color: #fff; }
+    /* Desktop: full spin + scale on hover */
+    @media (hover: hover) {
+      .wa-float:hover {
+        animation: none;
+        transform: rotate(360deg) scale(1.15);
+        box-shadow:
+          0  8px 24px rgba(37, 211, 102, 0.60),
+          0 16px 32px rgba(0, 0, 0, 0.40),
+          inset 0 1px 0 rgba(255, 255, 255, 0.30);
+      }
+    }
+    /* Mobile: shake every 5s to attract attention */
+    @media (hover: none) { .wa-float { animation: waShake 5s ease-in-out infinite; } }
+    @keyframes waBreathe {
+      0%, 100% { transform: scale(1.00); }
+      50%       { transform: scale(1.08); }
+    }
+    @keyframes waShake {
+      0%,  88%, 100% { transform: scale(1.04) rotate(  0deg); }
+      90%             { transform: scale(1.04) rotate( -8deg); }
+      92%             { transform: scale(1.04) rotate(  8deg); }
+      94%             { transform: scale(1.04) rotate( -5deg); }
+      96%             { transform: scale(1.04) rotate(  3deg); }
+      98%             { transform: scale(1.04) rotate(  0deg); }
+    }
+    /* prefers-reduced-motion: no animation, still fully visible & clickable */
+    @media (prefers-reduced-motion: reduce) { .wa-float { animation: none; } }
+
+    /* ============ FOOTER ============ */
+    footer {
+      position: relative; z-index: 1; text-align: center;
+      padding: 1.5rem 1rem 2rem; font-size: 0.78rem; color: var(--text-dim);
+      border-top: 1px solid var(--glass-border);
+    }
+    footer .blue { color: var(--blue); }
+
+    /* ============ MOBILE RESPONSIVE ============ */
+    @media (max-width: 540px) {
+      .card-front-grid { grid-template-columns: 64px 1fr; gap: 0.75rem; }
+      .avatar { width: 64px; height: 64px; }
+      .commitments { grid-template-columns: 1fr; }
+      .pkg-card { flex: 0 0 165px; }
+      .locations { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Water ripple background — CSS-only, 4 staggered rings, no canvas -->
+  <div class="ripple-bg" aria-hidden="true">
+    <div class="ripple-ring"></div>
+    <div class="ripple-ring"></div>
+    <div class="ripple-ring"></div>
+    <div class="ripple-ring"></div>
+  </div>
+
+  <!-- Language toggle -->
+  <nav class="lang-toggle" aria-label="Language toggle">
+    <button class="lang-btn active" data-lang="en">EN</button>
+    <button class="lang-btn" data-lang="zh">中</button>
+    <button class="lang-btn" data-lang="bm">BM</button>
+  </nav>
+
+  <!-- 3D-3: Floating WhatsApp button — 100% CSS, zero JS dependency -->
+  <a class="wa-float"
+     href="https://wa.me/601110569938?text=Hi%20Coach%20JianFoong%2C%20I%27d%20like%20to%20book%20a%20swim%20class"
+     target="_blank" rel="noopener"
+     aria-label="WhatsApp Coach JianFoong">
+    <!-- Official WhatsApp logo path -->
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+
+  <main class="page-fade">
+    <div class="container">
+
+      <!-- ===== HERO ===== -->
+      <div class="hero">
+        <div class="hero-eyebrow" data-i18n="eyebrow">CERTIFIED SWIM COACH · MIRI</div>
+      </div>
+
+      <!-- ===== A. CARD SECTION ===== -->
+      <section class="card-section">
+        <div class="card-perspective" id="cardPerspective" tabindex="0" role="button"
+             aria-label="Business card — press Enter or tap to flip">
+          <div class="card-3d">
+
+            <!-- FRONT -->
+            <div class="card-face card-front">
+              <div class="card-corner" data-i18n="contact">Contact</div>
+              <div class="card-front-grid">
+                <!-- Avatar: placehold.co "JF" placeholder. Replace src with real photo URL. -->
+                <div class="avatar">
+                  <img src="https://placehold.co/200x200/003B5C/7DD3FC?text=JF" alt="Coach JianFoong" />
+                </div>
+                <div>
+                  <!-- NAME: JianFoong — capital F preserved exactly -->
+                  <div class="name">JianFoong</div>
+                  <div class="title" data-i18n="title">Certified Swim Coach</div>
+                  <div class="company" data-i18n="certLine">Australia-Certified Swim Coach</div>
+                  <div class="tags">
+                    <span class="tag"        data-i18n="tagBeginner">Beginner</span>
+                    <span class="tag"        data-i18n="tagIntermediate">Intermediate</span>
+                    <span class="tag orange" data-i18n="tagAdvanced">Advanced</span>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer-mark" data-i18n="flipHint">Hover · Tap to flip</div>
+            </div>
+
+            <!-- BACK -->
+            <div class="card-face card-back">
+              <div class="back-grid">
+                <div class="back-info">
+                  <!-- NAME: JianFoong — capital F preserved -->
+                  <div class="back-name">JianFoong</div>
+                  <div class="back-cert" data-i18n="certBack">Australia Swimming License</div>
+                  <div class="row">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    <a href="tel:+601110569938">+60 11-1056 9938</a>
+                  </div>
+                  <div class="row">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    <a href="mailto:kongfoong4@gmail.com">kongfoong4@gmail.com</a>
+                  </div>
+                  <div class="row">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <span>Miri, Sarawak</span>
+                  </div>
+                  <div class="back-save-wrap">
+                    <button class="btn primary" id="saveContactMiniBtn"
+                            style="padding:0.45rem 0.9rem;font-size:0.72rem;">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                      <span data-i18n="btnSave">Save Contact</span>
+                    </button>
+                  </div>
+                </div>
+                <!-- QR: black/white, CorrectLevel H, GPU-hinted to prevent iOS Safari blur -->
+                <div class="qr-wrap">
+                  <div id="qrcode"></div>
+                  <div class="qr-label" data-i18n="qrLabel">Scan to save</div>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /card-3d -->
+        </div><!-- /card-perspective -->
+      </section>
+
+      <!-- ===== ACTION BUTTONS ===== -->
+      <div class="actions">
+        <a class="btn primary" href="tel:+601110569938">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span data-i18n="btnCall">Call</span>
+        </a>
+        <!-- WhatsApp preset: "Hi Coach JianFoong, I'd like to book a swim class" -->
+        <a class="btn whatsapp"
+           href="https://wa.me/601110569938?text=Hi%20Coach%20JianFoong%2C%20I%27d%20like%20to%20book%20a%20swim%20class"
+           target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          <span data-i18n="btnWhatsApp">WhatsApp</span>
+        </a>
+        <a class="btn" href="mailto:kongfoong4@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span data-i18n="btnEmail">Email</span>
+        </a>
+        <button class="btn" id="saveContactBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span data-i18n="btnSave">Save Contact</span>
+        </button>
+      </div>
+
+      <!-- ===== B. COMMITMENTS (incl. 3D-1 medallion) ===== -->
+      <div class="section-head">
+        <h2 data-i18n="commitTitle">My Personal <em>Commitments</em></h2>
+        <p data-i18n="commitSub">A promise — not a tagline.</p>
+      </div>
+      <section class="commitments">
+
+        <!-- Commitment 1: 3D-1 rotating credential medallion -->
+        <div class="commitment" id="medalCommit">
+          <div class="medallion-wrap" id="medallionWrap">
+            <div class="medallion" id="medallion">
+              <!-- Front: award icon -->
+              <div class="medallion-face medallion-front">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+              </div>
+              <!-- Back: certifications text -->
+              <div class="medallion-face medallion-back" id="medallionBack">Australia Swimming License</div>
+            </div>
+          </div>
+          <div class="medallion-label" data-i18n="medalLabel">Tap to flip</div>
+          <h3 data-i18n="c1Title">Certified Coach</h3>
+          <p data-i18n="c1Body">Nationally certified — Australia Swimming License</p>
+          <span class="tooltip" data-i18n="c1Tip">Full cert: Australia Swimming License. Trained for all age groups and skill levels.</span>
+        </div>
+
+        <!-- Commitment 2: All Ages -->
+        <div class="commitment">
+          <div class="commitment-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3 data-i18n="c2Title">All Ages Welcome</h3>
+          <p data-i18n="c2Body">Kids · Adults · Seniors</p>
+          <span class="tooltip" data-i18n="c2Tip">Customized lesson plans for every skill level — from first splash to competitive swimmer.</span>
+        </div>
+
+        <!-- Commitment 3: Flexible Locations -->
+        <div class="commitment">
+          <div class="commitment-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <h3 data-i18n="c3Title">Flexible Locations</h3>
+          <p data-i18n="c3Body">I come to your pool in Miri</p>
+          <span class="tooltip" data-i18n="c3Tip">Any registered pool in Miri. Beach Republic, public pools, private pools — I'll be there.</span>
+        </div>
+
+      </section>
+
+      <!-- ===== C. PRICING (3D-2 levitating cards) ===== -->
+      <div class="section-head">
+        <h2 data-i18n="pricingTitle">Class <em>Packages</em></h2>
+        <p data-i18n="pricingSub">Price shown is per person, for the full course. More students = more savings.</p>
+        <span class="pkg-note" data-i18n="pkgNote">All packages: 4 classes × 1 hour each</span>
+      </div>
+      <div class="pricing-rail" id="pricingRail" role="list"></div>
+
+      <!-- ===== D. LOCATIONS ===== -->
+      <div class="section-head">
+        <h2 data-i18n="locationsTitle">Training <em>Locations</em></h2>
+        <p data-i18n="locationsSub">I coach at your preferred pool in Miri, Sarawak.</p>
+      </div>
+      <section class="locations">
+        <div class="location-card">
+          <div class="location-name">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span data-i18n="flexTitle">Flexible Locations</span>
+          </div>
+          <div class="location-flexible-note" data-i18n="flexNote">
+            I come to your preferred pool in Miri. Just tell me where when you book.
+          </div>
+          <div class="location-example" data-i18n="flexExample">
+            e.g. Beach Republic Miri, Public Pools, your private pool
+          </div>
+          <div class="location-actions">
+            <a class="btn whatsapp"
+               href="https://wa.me/601110569938?text=Hi%20Coach%20JianFoong%2C%20I%27d%20like%20to%20book%20a%20swim%20class%20at%20my%20preferred%20pool%20in%20Miri"
+               target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+              <span data-i18n="bookNow">Book via WhatsApp</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== E. SHARE ===== -->
+      <div class="section-head share-section">
+        <h2 data-i18n="shareTitle">Share This <em>Card</em></h2>
+        <p data-i18n="shareSub">Pass it along — it travels well.</p>
+        <div class="share-actions">
+          <button class="btn" id="copyLinkBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            <span data-i18n="btnCopy">Copy Link</span>
+          </button>
+          <button class="btn" id="downloadImgBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span data-i18n="btnImage">Download Image</span>
+          </button>
+        </div>
+      </div>
+
+    </div><!-- /container -->
+  </main>
+
+  <footer>
+    © <span id="year"></span> JianFoong · <span class="blue">Miri, Sarawak</span>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- External libraries — pinned CDN versions, no Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <script>
+  (function () {
+    'use strict';
+
+    // ============ I18N ============
+    const i18n = {
+      en: {
+        eyebrow:        'CERTIFIED SWIM COACH · MIRI',
+        title:          'Certified Swim Coach',
+        certLine:       'Australia-Certified Swim Coach',
+        certBack:       'Australia Swimming License',
+        tagBeginner:    'Beginner',
+        tagIntermediate:'Intermediate',
+        tagAdvanced:    'Advanced',
+        contact:        'Contact',
+        flipHint:       'Hover · Tap to flip',
+        qrLabel:        'Scan to save',
+        medalLabel:     'Tap to flip',
+        btnCall:        'Call',
+        btnWhatsApp:    'WhatsApp',
+        btnEmail:       'Email',
+        btnSave:        'Save Contact',
+        commitTitle:    'My Personal <em>Commitments</em>',
+        commitSub:      'A promise — not a tagline.',
+        c1Title:        'Certified Coach',
+        c1Body:         'Nationally certified — Australia Swimming License',
+        c1Tip:          'Full cert: Australia Swimming License. Trained for all age groups and skill levels.',
+        c2Title:        'All Ages Welcome',
+        c2Body:         'Kids · Adults · Seniors',
+        c2Tip:          'Customized lesson plans for every skill level — from first splash to competitive swimmer.',
+        c3Title:        'Flexible Locations',
+        c3Body:         'I come to your pool in Miri',
+        c3Tip:          'Any registered pool in Miri. Beach Republic, public pools, private pools — I\'ll be there.',
+        pricingTitle:   'Class <em>Packages</em>',
+        pricingSub:     'Price shown is per person, for the full course. More students = more savings.',
+        pkgNote:        'All packages: 4 classes × 1 hour each',
+        pkg1Best:       'Best for: Focused learners who want 100% personal attention',
+        pkg2Best:       'Best for: Couples, siblings, or best friends learning together',
+        pkg3Best:       'Best for: Small family groups. Same price as Group Class — but private!',
+        pkg4Best:       'Best for: Family of 4. Great savings, still a dedicated session',
+        pkg5Best:       'Best for: Best value per person — great for friend groups',
+        pkg6Best:       'Best for: Mixed community class. Same price as 1-on-3 but with more peers!',
+        locationsTitle: 'Training <em>Locations</em>',
+        locationsSub:   'I coach at your preferred pool in Miri, Sarawak.',
+        flexTitle:      'Flexible Locations',
+        flexNote:       'I come to your preferred pool in Miri. Just tell me where when you book.',
+        flexExample:    'e.g. Beach Republic Miri, Public Pools, your private pool',
+        bookNow:        'Book via WhatsApp',
+        shareTitle:     'Share This <em>Card</em>',
+        shareSub:       'Pass it along — it travels well.',
+        btnCopy:        'Copy Link',
+        btnImage:       'Download Image',
+        copied:         'Copied ✓',
+        saved:          'vCard downloaded ✓',
+        captured:       'Image saved ✓'
+      },
+      zh: {
+        eyebrow:        '认证游泳教练 · 美里',
+        title:          '认证游泳教练',
+        certLine:       '澳洲认证游泳教练',
+        certBack:       'Australia Swimming License',
+        tagBeginner:    '初级',
+        tagIntermediate:'中级',
+        tagAdvanced:    '高级',
+        contact:        '联络方式',
+        flipHint:       '悬停 · 点击翻面',
+        qrLabel:        '扫码保存',
+        medalLabel:     '点击翻面',
+        btnCall:        '拨打电话',
+        btnWhatsApp:    'WhatsApp',
+        btnEmail:       '电邮',
+        btnSave:        '保存联系',
+        commitTitle:    '我的个人 <em>承诺</em>',
+        commitSub:      '是承诺，不是口号。',
+        c1Title:        '认证教练',
+        c1Body:         '国家认证 — Australia Swimming License',
+        c1Tip:          '完整资质：Australia Swimming License。针对各年龄层专项培训。',
+        c2Title:        '全年龄欢迎',
+        c2Body:         '儿童 · 成人 · 老年人',
+        c2Tip:          '针对每个水平定制课程，从零基础到竞技泳者均可。',
+        c3Title:        '灵活上课地点',
+        c3Body:         '教练上门到美里泳池',
+        c3Tip:          '美里任意注册泳池皆可，包括 Beach Republic、公共泳池、私人泳池——你指定地点，我准时到场。',
+        pricingTitle:   '课程 <em>套餐</em>',
+        pricingSub:     '以下价格为每人整套课程费用。人数越多，每人越省钱。',
+        pkgNote:        '所有套餐：4 节课 × 每节 1 小时',
+        pkg1Best:       '适合：希望获得百分百专注指导的学员',
+        pkg2Best:       '适合：情侣、兄弟姐妹或好朋友一起学',
+        pkg3Best:       '适合：小家庭组合。和 Group Class 同价——但专属私教！',
+        pkg4Best:       '适合：四口之家，超值省钱，仍是专属课',
+        pkg5Best:       '适合：每人最划算——朋友团报首选',
+        pkg6Best:       '适合：混合大班，和 1-on-3 同价，但能认识更多同学！',
+        locationsTitle: '上课 <em>地点</em>',
+        locationsSub:   '在美里您指定的泳池授课，砂拉越。',
+        flexTitle:      '灵活地点',
+        flexNote:       '你在美里指定任意泳池，我到场授课。预约时告诉我地点即可。',
+        flexExample:    '例如：Beach Republic 美里、公共泳池、私人泳池',
+        bookNow:        'WhatsApp 预约',
+        shareTitle:     '分享这张 <em>名片</em>',
+        shareSub:       '一张好名片，值得传递。',
+        btnCopy:        '复制链接',
+        btnImage:       '下载图片',
+        copied:         '已复制 ✓',
+        saved:          '名片已下载 ✓',
+        captured:       '图片已保存 ✓'
+      },
+      bm: {
+        eyebrow:        'JURULATIH RENANG BERTAULIAH · MIRI',
+        title:          'Jurulatih Renang Bertauliah',
+        certLine:       'Jurulatih Renang Bertauliah Australia',
+        certBack:       'Australia Swimming License',
+        tagBeginner:    'Pemula',
+        tagIntermediate:'Pertengahan',
+        tagAdvanced:    'Lanjutan',
+        contact:        'Hubungi',
+        flipHint:       'Hover · Ketuk untuk terbalikkan',
+        qrLabel:        'Imbas untuk simpan',
+        medalLabel:     'Ketuk untuk terbalikkan',
+        btnCall:        'Panggil',
+        btnWhatsApp:    'WhatsApp',
+        btnEmail:       'E-mel',
+        btnSave:        'Simpan Kenalan',
+        commitTitle:    'Komitmen <em>Peribadi</em> Saya',
+        commitSub:      'Janji — bukan slogan.',
+        c1Title:        'Jurulatih Bertauliah',
+        c1Body:         'Bertauliah kebangsaan — Australia Swimming License',
+        c1Tip:          'Senarai penuh: Australia Swimming License. Terlatih untuk semua peringkat umur.',
+        c2Title:        'Semua Umur Dialu-alukan',
+        c2Body:         'Kanak-kanak · Dewasa · Warga Emas',
+        c2Tip:          'Pelan pengajaran disesuaikan untuk setiap tahap kemahiran.',
+        c3Title:        'Lokasi Fleksibel',
+        c3Body:         'Saya datang ke kolam anda di Miri',
+        c3Tip:          'Mana-mana kolam berdaftar di Miri. Beach Republic, kolam awam, kolam persendirian — saya akan hadir.',
+        pricingTitle:   'Pakej <em>Kelas</em>',
+        pricingSub:     'Harga ditunjukkan adalah per orang, untuk kursus penuh. Lebih ramai = lebih jimat.',
+        pkgNote:        'Semua pakej: 4 kelas × 1 jam setiap kelas',
+        pkg1Best:       'Terbaik untuk: Pelajar fokus yang mahukan perhatian 100% peribadi',
+        pkg2Best:       'Terbaik untuk: Pasangan, adik-beradik atau rakan baik belajar bersama',
+        pkg3Best:       'Terbaik untuk: Kumpulan keluarga kecil. Sama harga Group Class — tapi privat!',
+        pkg4Best:       'Terbaik untuk: Keluarga 4 orang. Jimat besar, sesi masih eksklusif',
+        pkg5Best:       'Terbaik untuk: Paling berbaloi per orang — sesuai untuk kumpulan rakan',
+        pkg6Best:       'Terbaik untuk: Kelas komuniti bercampur. Sama harga 1-on-3 tapi lebih ramai rakan!',
+        locationsTitle: 'Lokasi <em>Latihan</em>',
+        locationsSub:   'Saya melatih di kolam pilihan anda di Miri, Sarawak.',
+        flexTitle:      'Lokasi Fleksibel',
+        flexNote:       'Saya datang ke kolam pilihan anda di Miri. Beritahu lokasi semasa membuat tempahan.',
+        flexExample:    'cth. Beach Republic Miri, Kolam Awam, kolam persendirian anda',
+        bookNow:        'Tempah via WhatsApp',
+        shareTitle:     'Kongsi Kad <em>Ini</em>',
+        shareSub:       'Hantarkan — ia mudah dikongsi.',
+        btnCopy:        'Salin Pautan',
+        btnImage:       'Muat Turun Imej',
+        copied:         'Disalin ✓',
+        saved:          'vCard dimuat turun ✓',
+        captured:       'Imej disimpan ✓'
+      }
+    };
+
+    let currentLang = 'en';
+
+    function applyI18n(lang) {
+      currentLang = lang;
+      const dict = i18n[lang];
+      document.documentElement.lang = lang === 'zh' ? 'zh' : (lang === 'bm' ? 'ms' : 'en');
+      document.querySelectorAll('[data-i18n]').forEach(function (el) {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key] !== undefined) el.innerHTML = dict[key];
+      });
+      renderPackages();
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        if (btn.classList.contains('active')) return;
+        document.querySelectorAll('.lang-btn').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        const main = document.querySelector('.page-fade');
+        main.classList.add('fading');
+        setTimeout(function () { applyI18n(btn.dataset.lang); main.classList.remove('fading'); }, 250);
+      });
+    });
+
+    // ============ PRICING DATA — JianFoong's actual prices ============
+    const packages = [
+      { id:'p1', type:'1-on-1',      persons:1, price:'RM 320', bestKey:'pkg1Best', isGroup:false },
+      { id:'p2', type:'1-on-2',      persons:2, price:'RM 208', bestKey:'pkg2Best', isGroup:false },
+      { id:'p3', type:'1-on-3',      persons:3, price:'RM 178', bestKey:'pkg3Best', isGroup:false },
+      { id:'p4', type:'1-on-4',      persons:4, price:'RM 168', bestKey:'pkg4Best', isGroup:false },
+      { id:'p5', type:'1-on-5',      persons:5, price:'RM 158', bestKey:'pkg5Best', isGroup:false },
+      { id:'p6', type:'Group Class', persons:8, price:'RM 178', bestKey:'pkg6Best', isGroup:true  }
+    ];
+    // Note: 1-on-3 and Group Class both RM 178 — highlighted in tooltips
+
+    const USER_SVG  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>';
+    const USERS_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>';
+
+    function renderPackages() {
+      const rail = document.getElementById('pricingRail');
+      const dict = i18n[currentLang];
+      rail.innerHTML = packages.map(function (p) {
+        const personsHTML = p.isGroup
+          ? (USERS_SVG + USERS_SVG + '<span style="font-size:0.72rem;color:var(--orange);margin-left:2px;font-weight:700;line-height:1;">+</span>')
+          : Array(p.persons).fill(USER_SVG).join('');
+        const groupBar = p.isGroup
+          ? '<div class="group-badge-bar">GROUP<span class="same-note">= same as 1-on-3</span></div>'
+          : '';
+        return (
+          '<article class="pkg-card" role="listitem" data-id="' + p.id + '">' +
+            groupBar +
+            '<div class="pkg-body">' +
+              '<div class="pkg-type">' + p.type + '</div>' +
+              '<div class="pkg-persons">' + personsHTML + '</div>' +
+              '<div class="pkg-price">' + p.price + '</div>' +
+              '<div class="pkg-per">per person · full course</div>' +
+              '<div class="pkg-divider"></div>' +
+              '<div class="pkg-duration">4 classes &times; 1 hour each</div>' +
+            '</div>' +
+            '<div class="pkg-tooltip">' + (dict[p.bestKey] || '') + '</div>' +
+          '</article>'
+        );
+      }).join('');
+      initPricingFloat();
+      bindPricingTap();
+    }
+
+    // 3D-2: IntersectionObserver stagger — cards float in 100ms apart when entering viewport
+    // Fallback: show all immediately if IntersectionObserver not supported
+    function initPricingFloat() {
+      const cards = document.querySelectorAll('.pkg-card');
+      if (typeof IntersectionObserver === 'undefined') {
+        cards.forEach(function (c) { c.classList.add('float-in'); });
+        return;
+      }
+      const io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            const idx = Array.from(cards).indexOf(entry.target);
+            setTimeout(function () { entry.target.classList.add('float-in'); }, idx * 100);
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      cards.forEach(function (c) { io.observe(c); });
+    }
+
+    // ============ CARD: 3D FLIP (mobile tap) + PARALLAX (desktop) ============
+    const cardPersp = document.getElementById('cardPerspective');
+    const isTouch   = window.matchMedia('(hover: none)').matches;
+
+    if (isTouch) {
+      cardPersp.addEventListener('click', function () { cardPersp.classList.toggle('flipped'); });
+    }
+    cardPersp.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); cardPersp.classList.toggle('flipped'); }
+    });
+    if (!isTouch) {
+      cardPersp.addEventListener('mousemove', function (e) {
+        const rect = cardPersp.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width  - 0.5;
+        const y = (e.clientY - rect.top)  / rect.height - 0.5;
+        // Parallax on outer element, flip on inner .card-3d — never conflict
+        cardPersp.style.transform = 'rotateX(' + (-y * 6).toFixed(2) + 'deg) rotateY(' + (x * 6).toFixed(2) + 'deg)';
+      });
+      cardPersp.addEventListener('mouseleave', function () { cardPersp.style.transform = ''; });
+    }
+
+    // ============ 3D-1: MEDALLION SPIN CONTROL ============
+    (function () {
+      const medallion = document.getElementById('medallion');
+      if (!medallion) return;
+
+      // Degradation checks:
+      // 1. prefers-reduced-motion — CSS already stops animation; JS also disables flip-timer
+      // 2. hardwareConcurrency < 4 (low-end device) — stop auto-spin in JS too
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const lowEnd = (typeof navigator.hardwareConcurrency === 'number') && navigator.hardwareConcurrency < 4;
+
+      if (lowEnd) {
+        // Kill the CSS animation via inline style (overrides @keyframes)
+        medallion.style.animation = 'none';
+        medallion.style.transform = 'translateZ(0) rotateY(0deg)';
+      }
+
+      let flipTimer = null;
+
+      function flipToBack() {
+        if (flipTimer) { clearTimeout(flipTimer); flipTimer = null; }
+        medallion.classList.add('show-back');
+        // Resume auto-spin after 3s (skip if degraded)
+        flipTimer = setTimeout(function () {
+          medallion.classList.remove('show-back');
+          if (!lowEnd && !reducedMotion) {
+            // Force animation restart: remove, reflow, re-add
+            medallion.style.animation = 'none';
+            void medallion.offsetWidth;
+            medallion.style.animation = '';  // falls back to CSS class animation
+          }
+          flipTimer = null;
+        }, 3000);
+      }
+
+      const wrap = document.getElementById('medallionWrap');
+      if (!isTouch) {
+        // Desktop: hover on the wrap triggers flip
+        wrap.addEventListener('mouseenter', flipToBack);
+      } else {
+        // Mobile: tap the wrap (stopPropagation so it doesn't bubble to commitment toggle)
+        wrap.addEventListener('click', function (e) {
+          e.stopPropagation();
+          flipToBack();
+        });
+      }
+    }());
+
+    // ============ QR CODE ============
+    // vCard < 250 chars: FN/TITLE/TEL/EMAIL only — no ORG/ADR/NOTE
+    // CorrectLevel H = 30% error correction, scan-proof even slightly blurred
+    // colorDark near-black, colorLight white — maximum contrast
+    const vCardData = [
+      'BEGIN:VCARD',
+      'VERSION:3.0',
+      'FN:JianFoong',
+      'TITLE:Certified Swim Coach',
+      'TEL;TYPE=CELL:+601110569938',
+      'EMAIL:kongfoong4@gmail.com',
+      'NOTE:Australia Swimming License Certified',
+      'END:VCARD'
+    ].join('\r\n');
+
+    function buildQR() {
+      const el = document.getElementById('qrcode');
+      el.innerHTML = '';
+      if (typeof QRCode === 'undefined') return;
+      new QRCode(el, {
+        text:         vCardData,
+        width:        256,
+        height:       256,
+        colorDark:    '#1a1a1a',
+        colorLight:   '#ffffff',
+        correctLevel: QRCode.CorrectLevel.H
+      });
+    }
+    if (typeof QRCode !== 'undefined') { buildQR(); } else { window.addEventListener('load', buildQR); }
+
+    // ============ SAVE CONTACT ============
+    function downloadVCard() {
+      const blob = new Blob([vCardData], { type: 'text/vcard;charset=utf-8' });
+      const url  = URL.createObjectURL(blob);
+      const a    = document.createElement('a');
+      a.href = url; a.download = 'JianFoong-SwimCoach.vcf';
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(function () { URL.revokeObjectURL(url); }, 500);
+      showToast(i18n[currentLang].saved);
+    }
+    document.getElementById('saveContactBtn').addEventListener('click', downloadVCard);
+    document.getElementById('saveContactMiniBtn').addEventListener('click', function (e) {
+      e.stopPropagation(); downloadVCard();
+    });
+
+    // ============ COPY LINK ============
+    const copyBtn = document.getElementById('copyLinkBtn');
+    copyBtn.addEventListener('click', function () {
+      const url   = window.location.href;
+      const label = copyBtn.querySelector('[data-i18n]');
+      const finish = function () {
+        label.textContent = i18n[currentLang].copied;
+        showToast(i18n[currentLang].copied);
+        setTimeout(function () { label.textContent = i18n[currentLang].btnCopy; }, 2000);
+      };
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(url).then(finish);
+        } else {
+          const ta = document.createElement('textarea');
+          ta.value = url; ta.style.cssText = 'position:fixed;opacity:0;';
+          document.body.appendChild(ta); ta.select(); document.execCommand('copy');
+          document.body.removeChild(ta); finish();
+        }
+      } catch (e) { showToast('Copy failed'); }
+    });
+
+    // ============ DOWNLOAD IMAGE ============
+    document.getElementById('downloadImgBtn').addEventListener('click', function () {
+      if (typeof html2canvas === 'undefined') { showToast('html2canvas not loaded'); return; }
+      // Target .card-section (not body) — CSS ripple bg is position:fixed,
+      // doesn't interfere with html2canvas when cropping the card only
+      html2canvas(document.querySelector('.card-section'), {
+        backgroundColor: '#001a2e', scale: 2, useCORS: true, logging: false
+      }).then(function (canvas) {
+        const link = document.createElement('a');
+        link.download = 'JianFoong-SwimCoach-Card.png';
+        link.href = canvas.toDataURL('image/png'); link.click();
+        showToast(i18n[currentLang].captured);
+      }).catch(function (err) { showToast('Capture failed'); console.error(err); });
+    });
+
+    // ============ TOAST ============
+    let toastTimer;
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg; t.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function () { t.classList.remove('show'); }, 2200);
+    }
+
+    // ============ INIT ============
+    document.getElementById('year').textContent = new Date().getFullYear();
+    renderPackages();
+
+    // ============ COMMITMENT TAP — mobile toggle (Honest Disclosure pattern) ============
+    // matchMedia gate + toggle + stopPropagation + document-click close
+    (function () {
+      if (window.matchMedia('(hover: hover)').matches) return;
+      const cards = document.querySelectorAll('.commitment');
+      cards.forEach(function (card) {
+        card.addEventListener('click', function (e) {
+          e.stopPropagation();
+          const wasActive = card.classList.contains('active');
+          cards.forEach(function (c) { c.classList.remove('active'); });
+          if (!wasActive) card.classList.add('active');
+        });
+      });
+      document.addEventListener('click', function () {
+        cards.forEach(function (c) { c.classList.remove('active'); });
+      });
+    }());
+
+    // ============ PRICING CARD TAP — mobile toggle ============
+    function bindPricingTap() {
+      if (window.matchMedia('(hover: hover)').matches) return;
+      const pkgCards = document.querySelectorAll('.pkg-card');
+      pkgCards.forEach(function (card) {
+        card.addEventListener('click', function (e) {
+          e.stopPropagation();
+          const wasActive = card.classList.contains('active');
+          pkgCards.forEach(function (c) { c.classList.remove('active'); });
+          if (!wasActive) card.classList.add('active');
+        });
+      });
+      document.addEventListener('click', function () {
+        pkgCards.forEach(function (c) { c.classList.remove('active'); });
+      });
+    }
+
+  })();
+  </script>
+</body>
+</html>
