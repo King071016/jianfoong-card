@@ -506,37 +506,23 @@
        Full CSS — zero JS required.
        Degradation: no 3D shadow → still a clickable green circle.
     ============================================================ */
-    /* Floating WhatsApp — Safari-safe: 纯 <a>，动画只用 box-shadow pulse（无 transform/animation on <a>）
-       Safari 取消协议跳转后无 compositing layer 可冻结，pointer-events 永远有效 */
+    /* Floating WhatsApp — 与行内 btn whatsapp 完全相同样式，fixed 定位，零动画，Safari 无障碍 */
     .wa-float {
       position: fixed;
       bottom: calc(20px + env(safe-area-inset-bottom, 0px));
       right: 20px;
       z-index: 1000;
       width: 60px; height: 60px; border-radius: 50%;
-      background: var(--wa-green);
-      box-shadow:
-        0  4px 12px rgba(37, 211, 102, 0.40),
-        0  8px 24px rgba(0, 0, 0, 0.20);
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      border: none;
+      box-shadow: 0 4px 16px rgba(34, 197, 94, 0.45);
       display: flex; align-items: center; justify-content: center;
       color: #fff; text-decoration: none;
-      animation: waPulse 2s ease-in-out infinite;
     }
     .wa-float svg { width: 28px; height: 28px; color: #fff; }
     @media (hover: hover) {
-      .wa-float:hover {
-        animation: none;
-        box-shadow:
-          0  8px 24px rgba(37, 211, 102, 0.70),
-          0 16px 32px rgba(0, 0, 0, 0.40);
-      }
+      .wa-float:hover { box-shadow: 0 6px 24px rgba(34, 197, 94, 0.6); }
     }
-    /* box-shadow pulse：无 transform，Safari 不会冻结 pointer-events */
-    @keyframes waPulse {
-      0%, 100% { box-shadow: 0 4px 12px rgba(37,211,102,0.40), 0 8px 24px rgba(0,0,0,0.20); }
-      50%       { box-shadow: 0 4px 20px rgba(37,211,102,0.70), 0 8px 32px rgba(0,0,0,0.25); }
-    }
-    @media (prefers-reduced-motion: reduce) { .wa-float { animation: none; } }
 
     /* ============ FOOTER ============ */
     footer {
